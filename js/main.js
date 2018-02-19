@@ -1,4 +1,10 @@
+$(document).ready(function(){
+  var toDoItems = new ToDoItems([
+    new ToDoItem({ description: "To Do Item 1"}),
+    new ToDoItem({ description: "To Do Item 2"})
+  ]);
 
-// In the first few sections, we do all the coding here.
-// Later, you'll see how to organize your code into separate
-// files and modules.
+  var toDoItemsView = new ToDoItemsView({ model: toDoItems });
+
+  $("body").append(toDoItemsView.render().$el)
+});
