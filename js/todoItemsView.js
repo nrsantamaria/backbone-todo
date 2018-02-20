@@ -33,8 +33,8 @@ var ToDoItemsView = Backbone.View.extend({
   onClickAdd: function(){
     var $textbox = this.$("#newToDoItem");
     if($textbox.val()){
-      var todoitem = new ToDoItem({ description: $textbox.val() });
-      this.model.add(todoitem);
+      var todoitem = new ToDoItem({ title: $textbox.val() });
+      this.model.create(todoitem);
       $textbox.val("");
     }
   },
