@@ -25,10 +25,10 @@ var ToDoItemView = Backbone.View.extend({
     this.$el.attr("id", this.model.id);
     this.$el.toggleClass("completed", this.model.get("completed"));
 
-    var checked = this.model.get("completed") ? "checked": "";//first get the value of the isCompleted property, and if its checked, render a checked attribute in the input below
-
-    this.$el.html("<input id='toggle' type='checkbox'"   + checked + "></input>" + this.model.escape("title") + "<button id='delete'>X</button>");
-    //escape is like the get method but it also html encodes the return value so you cant hack the text box with javascript code
+    var template = $("#todoItemTemplate").html();
+    var html = Mustache.render(template, this.model.toJSON());
+    this.$el.html(html);
+    
     return this;
   }
 })
