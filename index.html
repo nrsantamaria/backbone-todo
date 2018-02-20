@@ -26,9 +26,18 @@
         <script src="js/main.js"></script>
 
         <script type="text/html" id="todoItemTemplate">
-          <input type="checkbox" {{#completed}}checked{{/completed}} id='toggle'></input>
-          {{title}}
+          <label>
+            <input type="checkbox" {{#completed}}checked{{/completed}} id='toggle'></input>
+            {{title}}
+          </label>
           <button id='delete'>X</button>
+        </script>
+        <script type="text/html" id="todoItemsTemplate">
+          <header id="addNewTodoItem">
+            <input type='text' id='newToDoItem' autofocus placeholder="Add a task here"></input>
+            <button id='add'>Add</button>
+          </header>
+          <ul id='todoItems'></ul>
         </script>
     </body>
 </html>

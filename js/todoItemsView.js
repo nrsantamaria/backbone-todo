@@ -1,8 +1,6 @@
 var ToDoItemsView = Backbone.View.extend({
-  tagName: "ul",
-
-  id: "todoItems",
-
+  id: "todoItemsContainer",
+  
   initialize: function(options){
     if(!(options && options.model))
       throw new Error("model is not specified");
@@ -17,7 +15,7 @@ var ToDoItemsView = Backbone.View.extend({
 
   onAddTodoItem: function(todoItem){
     var view = new ToDoItemView({model: todoItem});
-    this.$el.append(view.render().$el);
+    this.$("#todoItems").append(view.render().$el);
   },
 
   events: {
@@ -40,15 +38,10 @@ var ToDoItemsView = Backbone.View.extend({
   },
 
   render: function(){
-    var self = this;
-    this.$el.append("<input type='text' id='newToDoItem' autofocus></input>");
-    this.$el.append("<button id='add'>Add</button>");
+    var template = $("#todoItemsTemplate").html();
+    var html = Mustache.render(template);
+    this.$el.html(html);
 
-    this.model.each(function(toDoItem){
-      var view = new ToDoItemView({ model: toDoItem });
-
-      self.$el.append(view.render().$el);
-    });
     return this;
   }
 
