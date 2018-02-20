@@ -8,7 +8,12 @@ var ToDoItemView = Backbone.View.extend({
   },
 
   events: {
-    "click #toggle": "onClickToggle"
+    "click #toggle": "onClickToggle",
+    "click #delete": "onClickDelete"
+  },
+
+  onClickDelete: function(){
+    this.model.destroy();
   },
 
   onClickToggle: function(){
@@ -16,11 +21,12 @@ var ToDoItemView = Backbone.View.extend({
   },
 
   render: function(){
+    this.$el.attr("id", this.model.id);
     this.$el.toggleClass("completed", this.model.get("isCompleted"));
 
     var checked = this.model.get("isCompleted") ? "checked": "";//first get the value of the isCompleted property, and if its checked, render a checked attribute in the input below
 
-    this.$el.html("<input id='toggle' type='checkbox'"   + checked + "></input>" + this.model.escape("description"));
+    this.$el.html("<input id='toggle' type='checkbox'"   + checked + "></input>" + this.model.escape("description") + "<button id='delete'>X</button>");
     //escape is like the get method but it also html encodes the return value so you cant hack the text box with javascript code
     return this;
   }
